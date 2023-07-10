@@ -15,9 +15,9 @@
 #container{
     width: 406px;
     height: 516px;
-    border: 5px solid rgb(14, 14, 14);
+    border: 5px solid rgb(48, 48, 48);
     border-radius: 5px;
-    background-color: grey;
+    background-color: rgb(7, 7, 7);
     display: grid;
     padding: 2px;
     grid-template-columns: repeat(4, 100px);
@@ -48,5 +48,24 @@ button{
     color: black;
 }
 
+.operator{
+    background-color: orange;
+}
 
+.operand{
+    background-color: teal;
+}
+
+.equals{
+    background-color: orange;
+}
+
+.clearDisplay{
+    background-color: red;
+}
+
+.sign,
+.deleteItem{
+    background-color: steelblue;
+}
 
