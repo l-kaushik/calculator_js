@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#calc{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#container{
+    width: 400px;
+    height: 500px;
+    border: 5px solid rgb(14, 14, 14);
+    border-radius: 5px;
+}
