@@ -13,6 +13,7 @@ let oldOperation;
 
 buttons.forEach(button => {
     button.addEventListener("click", () => {
+        
         if (!isNaN(parseInt(button.value))) {
             pressedOnce = 0;    // checks for operator keys being pressed once or more
             if (String(operand2).length > 8) return;
