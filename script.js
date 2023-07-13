@@ -9,11 +9,12 @@ let operand1 = 0, operand2 = 0;
 let operation;
 let count = 0;
 let pressedOnce = 0;
+let oldOperation;
 
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         if (!isNaN(parseInt(button.value))) {
-            pressedOnce = 0;
+            pressedOnce = 0;    // checks for operator keys being pressed once or more
             if (String(operand2).length > 8) return;
             operand2 = operand2 * 10;
             operand2 = operand2 + parseInt(button.value);
@@ -25,7 +26,7 @@ buttons.forEach(button => {
 operators.forEach(operator => {
     operator.addEventListener("click", (e) => {
         operation = operator.value.toString();
-            
+
         mathematics(operation);
 
     });
@@ -35,12 +36,40 @@ function mathematics(operation) {
     let temp = operand2;
     switch (operation) {
 
+        case "%":
+            console.log(temp);
+            console.log(operand1);
+            console.log(result);
+            console.log("");
+            switch(oldOperation){
+                case "*":
+                    result = operand1 * (temp/100);
+                    break;
+                case "+":
+                    result = operand1 + (operand1 * (temp/100));
+                    break;
+                case "-":
+                    result = operand1 - (operand1 * (temp/100));
+                    break;
+                case "/":
+                    result = (operand1 / temp) * operand1;
+                    break;
+            }
+            console.log(oldOperation);
+            console.log(temp);
+            console.log(operand1);
+            console.log(result);
+            console.log("");
+            break;
         case "+":
+ 
+            oldOperation = operation;
             result = operand1 + operand2;
             operand1 = result;
             break;
 
         case "-":
+            oldOperation = operation;
             if (count >= 1) {
                 result = operand1 - temp;
             } else {
@@ -51,11 +80,12 @@ function mathematics(operation) {
             break;
 
         case "*":
-            if(count < 1){
-                result = temp * 1;
+            oldOperation = operation;
+            if (count < 1) {
+                result = temp;
             }
-            else{
-                if(pressedOnce == 0){
+            else {
+                if (pressedOnce == 0) {
                     result = operand1 * temp;
                     pressedOnce = 1;
                 }
@@ -64,8 +94,23 @@ function mathematics(operation) {
             count++;
             break;
 
-        case "/":
-            result = operand1 / operand2;
+        case "/": 
+        oldOperation = operation;
+            if (count < 1) {
+                result = temp;
+            }
+            else {
+                if (pressedOnce == 0) {
+                    if(temp == 0){
+                        result = "NaN";
+                        break;
+                    }
+                    result = operand1 / temp;
+                    pressedOnce = 1;
+                }
+            }
+            operand1 = result;
+            count++;
             break;
     }
     operand2 = 0;
@@ -74,9 +119,6 @@ function mathematics(operation) {
         result = result.toExponential(2);
     }
     display.textContent = result.toString();
-    // flagEquals = 0;
-
-    // console.log(operand1);
 }
 
 equals.addEventListener("click", () => {
