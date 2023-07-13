@@ -8,12 +8,12 @@ const del = document.querySelector(".deleteItem");
 let operand1 = 0, operand2 = 0;
 let operation;
 let count = 0;
-let flagEquals = 0;
-
+let pressedOnce = 0;
 
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         if (!isNaN(parseInt(button.value))) {
+            pressedOnce = 0;
             if (String(operand2).length > 8) return;
             operand2 = operand2 * 10;
             operand2 = operand2 + parseInt(button.value);
@@ -25,9 +25,6 @@ buttons.forEach(button => {
 operators.forEach(operator => {
     operator.addEventListener("click", (e) => {
         operation = operator.value.toString();
-
-        if(count > 0)
-            flagEquals = 1;
             
         mathematics(operation);
 
@@ -58,16 +55,10 @@ function mathematics(operation) {
                 result = temp * 1;
             }
             else{
-                console.log(flagEquals);
-                console.log(operand1);
-                console.log(temp);
-                if(flagEquals != 1){
+                if(pressedOnce == 0){
                     result = operand1 * temp;
+                    pressedOnce = 1;
                 }
-                else{
-                    result;
-                }
-
             }
             operand1 = result;
             count++;
