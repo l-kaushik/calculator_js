@@ -37,10 +37,6 @@ function mathematics(operation) {
     switch (operation) {
 
         case "%":
-            console.log(temp);
-            console.log(operand1);
-            console.log(result);
-            console.log("");
             switch(oldOperation){
                 case "*":
                     result = operand1 * (temp/100);
@@ -55,11 +51,6 @@ function mathematics(operation) {
                     result = (operand1 / temp) * operand1;
                     break;
             }
-            console.log(oldOperation);
-            console.log(temp);
-            console.log(operand1);
-            console.log(result);
-            console.log("");
             break;
         case "+":
  
